@@ -16,7 +16,7 @@ class ClientOptionsScreen extends StatelessWidget {
                 // Navigate to RequestPage and replace current screen
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => RequestPage()),
+                  MaterialPageRoute(builder: (context) => RequestPage(userType: 'client')),
                 );
               },
               child: Text('Go to Request Page'),

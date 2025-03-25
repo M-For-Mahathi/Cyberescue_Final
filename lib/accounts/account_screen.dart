@@ -5,8 +5,15 @@ import '../screens/common_attacks_screen.dart';
 import '../screens/contact_lawyers_screen.dart';
 import '../screens/faqs_screens.dart';
 import '../screens/chat_screen.dart';
+import '../screens/lawyer_page.dart';
 
 class AccountsScreen extends StatelessWidget {
+  // Sample data for submitted requests
+  final List<Map<String, String>> submittedRequests = [
+    {"id": "101", "issue": "Cyberbullying", "category": "Harassment", "status": "Submitted"},
+    {"id": "102", "issue": "Data Breach", "category": "Privacy", "status": "Submitted"},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,28 +41,6 @@ class AccountsScreen extends StatelessWidget {
             },
             tooltip: 'Contact Lawyers',
           ),
-          SizedBox(width: 10),
-          // IconButton(
-          //   icon: Icon(Icons.security),
-          //   onPressed: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(builder: (context) => CommonAttacksScreen()),
-          //     );
-          //   },
-          //   tooltip: 'Common Attacks',
-          // ),
-          SizedBox(width: 10),
-          // IconButton(
-          //   icon: Icon(Icons.file_copy),
-          //   onPressed: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(builder: (context) => RequestPage()),
-          //     );
-          //   },
-          //   tooltip: 'Request Page',
-          // ),
         ],
       ),
       body: Container(
@@ -73,11 +58,11 @@ class AccountsScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  _buildCircleAvatar('Judiciary', Colors.blue),
+                  _buildCircleAvatar('Judiciary', Colors.blue, context),
                   SizedBox(height: 20),
-                  _buildCircleAvatar('Lawyer', Colors.green),
+                  _buildLawyerButton(context), // Lawyer Button
                   SizedBox(height: 20),
-                  _buildClientButton(context),
+                  _buildClientButton(context), // Client Button
                 ],
               ),
             ),
@@ -130,17 +115,49 @@ class AccountsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCircleAvatar(String title, Color color) {
-    return CircleAvatar(
-      radius: 60,
-      backgroundColor: color,
+  Widget _buildCircleAvatar(String title, Color color, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        if (title == 'Judiciary') {
+          // Add Judiciary navigation if needed
+        }
+      },
+      child: CircleAvatar(
+        radius: 60,
+        backgroundColor: color,
+        child: Text(
+          title,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLawyerButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => LawyerPage(submittedRequests: submittedRequests)),
+        );
+      },
+      style: ElevatedButton.styleFrom(
+        shape: CircleBorder(),
+        padding: EdgeInsets.all(60),
+        backgroundColor: Colors.green,
+        elevation: 10,
+      ),
       child: Text(
-        title,
+        'Lawyer',
         style: TextStyle(
           color: Colors.white,
           fontSize: 20,
           fontWeight: FontWeight.bold,
-          letterSpacing: 1.5,
         ),
       ),
     );

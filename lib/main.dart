@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart'; // Import dotenv
 import 'services/notification_service.dart'; // Import NotificationService
 import 'screens/chat_screen.dart'; // Import ChatScreen for the AI-powered chatbot
-import 'package:cyberescue/screens/chat_screen.dart';  // Correct import path
 import 'screens/main_screen.dart'; // Import MainScreen from screens
 // Import RequestScreen
 // Import CommonCyberAttacksScreen
@@ -154,7 +153,7 @@ class AccountsScreen extends StatelessWidget {
         // After pressing the "Client" button, navigate to both screens
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => RequestPage()),
+          MaterialPageRoute(builder: (context) => RequestPage(userType: 'client')),
         );
         Navigator.push(
           context,

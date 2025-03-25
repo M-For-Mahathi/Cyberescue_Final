@@ -1,7 +1,6 @@
 import 'package:cyberescue/accounts/account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:cyberescue/accounts/account_screen.dart'; // Import your Accounts Page here
 
 class LoginScreen extends StatefulWidget {
   @override
